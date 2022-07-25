@@ -1,3 +1,6 @@
+import subprocess
+
+import psutil
 import pyautogui
 
 """
@@ -10,6 +13,7 @@ For more advance/complex automation, you want to copy an entire code and simulat
 toml/json config would hold configurations for 
 """
 
+
 def automate_mouse():
     pass
 
@@ -17,12 +21,33 @@ def automate_mouse():
 def automate_keypress():
     pass
 
-def automate_browsing():
+
+def automate_browsing(url: str):
     pass
 
-def start_application(*args):
+
+def start_application(process_name: str):
     pass
 
 
-while True:
-    pyautogui.scroll()
+def alternate_btw_apps():
+    pass
+
+
+if __name__ == "__main__":
+    dev_tools: list[str] = ["postman", "brave", "qterminal", "code"]
+
+    for tool in dev_tools:
+        if tool not in (p.name() for p in psutil.process_iter()):
+            print("yay, will call subprocess now")
+            # either open with launcher or use a subprocess call
+            try:
+                subprocess.Popen(tool, start_new_session=True)
+            except FileNotFoundError as e:
+                print(f"Could not launch application {tool}")
+                pyautogui.moveTo(5, pyautogui.size()[1], duration=0.5)
+                pyautogui.hotkey("win", "r")
+                
+                pyautogui.press("postman")
+                pyautogui.press("accept")
+            
