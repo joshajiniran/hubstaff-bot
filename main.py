@@ -3,6 +3,8 @@ import subprocess
 import psutil
 import pyautogui
 
+from config import LinuxConfig
+
 """
 When the scripts starts running, check if the browser, code editor and postman is running, otherwise launch them
 You want to automate mouse movement at intervals: scroll, click
@@ -47,7 +49,6 @@ if __name__ == "__main__":
                 print(f"Could not launch application {tool}")
                 pyautogui.moveTo(5, pyautogui.size()[1], duration=0.5)
                 pyautogui.hotkey("win", "r")
-                
+
                 pyautogui.press("postman")
                 pyautogui.press("accept")
-            

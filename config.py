@@ -1,38 +1,62 @@
 class Config:
-    APPLICATIONS = {
-        "browser": "brave",
-        "editor": "code",
-        "terminal": "qterminal",
-        "tester": "postman",
-        "slack": "slack",
-        "hubstaff": "hubstaff"
-    }
-    URLS = {
-        "stackoverflow": "",
-        "youtube": "",
-        "reddit": ""
-    }
-    DURATION = {
-        "alternate_apps": "",
-        "scroll": "",
-        "session": ""
-    }
-    SHORTCUTS = {
-        "browser": ["ctrl+l", "ctrl+w", "ctrl+t", "ctrl+tab", "ctrl+shift+tab"],
-        "editor": ["ctrl+`", "ctrl+c", "ctrl+v"],
-        "terminal": ["up", "down", "enter"]
-    }
-    COORDINATES = {
-        "hubstaff": {
-            
-        },
+    CONFIG = {
         "browser": {
-            
+            "launch": ("brave", ""),
+            "duration": "",
+            "shortcuts": [
+                "ctrl+l",
+                "ctrl+w",
+                "ctrl+t",
+                "ctrl+tab",
+                "ctrl+shift+tab",
+                "ctrl+shift+i",
+            ],
+            "coordinates": [{"launch": ()}, {"close": ()}],
         },
         "editor": {
-            
+            "launch": ("code", ""),
+            "urls": [],
+            "duration": "",
+            "shortcuts": ["ctrl+`", "ctrl+c", "ctrl+v", "ctrl+tab", "ctrl+shift+tab"],
+            "coordinates": [{"launch": ()}, {"close": ()}],
+        },
+        "terminal": {
+            "launch": ["qterm"],
+            "duration": "",
+            "shortcuts": ["up", "down", "enter"],
+            "coordinates": [{"launch": ()}, {"close": ()}],
         },
         "tester": {
-            "launch": ()
-        }
+            "launch": ["postman"],
+            "urls": [],
+            "duration": "",
+            "shortcuts": [],
+            "coordinates": [{"launch": ()}, {"close": ()}],
+        },
+        "slack": {
+            "launch": ["slack"],
+            "urls": [],
+            "duration": "",
+            "shortcuts": [],
+            "coordinates": [{"launch": ()}, {"close": ()}],
+        },
+        "hubstaff": {
+            "launch": ["hubstaff"],
+            "urls": [],
+            "duration": "",
+            "shortcuts": [],
+            "coordinates": [{"launch": ()}, {"close": ()}],
+        },
     }
+
+
+class LinuxConfig(Config):
+    pass
+
+
+class WindowsConfig(Config):
+    pass
+
+
+class MacConfig(Config):
+    pass
