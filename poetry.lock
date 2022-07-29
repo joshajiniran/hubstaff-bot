@@ -1985,7 +1985,7 @@ python-versions = ">=3.5"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "3c412e46d1b5b3a1c79c084229e5f6395b0df36261e0b5310e8326fb9becc4d7"
+content-hash = "548fa35b28140bd7e36d2c0ee45f8c6a36e70c1b868417e96a4337c033c9dd26"
 
 [metadata.files]
 keyboard = []

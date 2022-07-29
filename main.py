@@ -3,7 +3,8 @@ import subprocess
 import psutil
 import pyautogui
 
-from config import LinuxConfig
+from config import setup_config
+from session import Session
 
 """
 When the scripts starts running, check if the browser, code editor and postman is running, otherwise launch them
@@ -12,32 +13,23 @@ You want to alternate between code and browser or any other app (postman, termin
 You want to visit websites (usually stackoverflow, or sites that show you are working)
 
 For more advance/complex automation, you want to copy an entire code and simulate typing it in the editor
-toml/json config would hold configurations for 
+toml/json config may hold configurations for settings/config
+sqlite may hold state configs for app settings like desired coordinates, should run first/last, depends on app etc.
 """
 
 
-def automate_mouse():
-    pass
-
-
-def automate_keypress():
-    pass
-
-
-def automate_browsing(url: str):
-    pass
-
-
-def start_application(process_name: str):
-    pass
-
-
-def alternate_btw_apps():
-    pass
-
-
 if __name__ == "__main__":
-    dev_tools: list[str] = ["postman", "brave", "qterminal", "code"]
+    linux_config = setup_config("linux")
+
+    dev_tools: list[str] = [
+        linux_config.BROWSER,
+        linux_config.EDITOR,
+        linux_config.TERMINAL,
+        linux_config.TESTER,
+    ]
+
+    # create a session: will hold the list of running applications
+    session = Session()
 
     for tool in dev_tools:
         if tool not in (p.name() for p in psutil.process_iter()):

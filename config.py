@@ -1,6 +1,9 @@
+from typing import Optional
+
+
 class Config:
     CONFIG = {
-        "browser": {
+        "BROWSER": {
             "launch": ("brave", ""),
             "duration": "",
             "shortcuts": [
@@ -13,35 +16,35 @@ class Config:
             ],
             "coordinates": [{"launch": ()}, {"close": ()}],
         },
-        "editor": {
+        "EDITOR": {
             "launch": ("code", ""),
             "urls": [],
             "duration": "",
             "shortcuts": ["ctrl+`", "ctrl+c", "ctrl+v", "ctrl+tab", "ctrl+shift+tab"],
             "coordinates": [{"launch": ()}, {"close": ()}],
         },
-        "terminal": {
-            "launch": ["qterm"],
+        "TERMINAL": {
+            "launch": ("qterminal",),
             "duration": "",
             "shortcuts": ["up", "down", "enter"],
             "coordinates": [{"launch": ()}, {"close": ()}],
         },
-        "tester": {
-            "launch": ["postman"],
+        "TESTER": {
+            "launch": ("postman", "/home/projosh/Downloads/Compressed/Postman/Postman"),
             "urls": [],
             "duration": "",
             "shortcuts": [],
             "coordinates": [{"launch": ()}, {"close": ()}],
         },
-        "slack": {
-            "launch": ["slack"],
+        "SLACK": {
+            "launch": ("slack",),
             "urls": [],
             "duration": "",
             "shortcuts": [],
             "coordinates": [{"launch": ()}, {"close": ()}],
         },
-        "hubstaff": {
-            "launch": ["hubstaff"],
+        "HUBSTAFF": {
+            "launch": ("hubstaff",),
             "urls": [],
             "duration": "",
             "shortcuts": [],
@@ -60,3 +63,12 @@ class WindowsConfig(Config):
 
 class MacConfig(Config):
     pass
+
+
+configuration: Optional[Config] = None
+
+# You can use the factory class creational pattern
+def setup_config(conf: str = "linux") -> Config:
+    configs = {"linux": LinuxConfig(), "windows": WindowsConfig(), "mac": MacConfig()}
+    global configuration
+    configuration = configs[conf]
